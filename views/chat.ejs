@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            height: 90%;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #chat-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+            height: 60%;
+            width: calc(100% - 20px);
+            
+            padding: 10px;
+            margin-bottom: 20px;
+
+            text-align: left;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px); /* Adjust for input padding */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            color: white;
+            background-color: #ff8a00;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff7a00;
+        }        
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat App</h1>
+        <div id="chat-container">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <form id="message-form">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+<script>
+    var socket = io();
+
+    let form = document.querySelector('#message-form');
+    let input = document.querySelector('#message-input');
+    let messages = document.querySelector('#chat-container');
+
+    let username = '<%= username %>';
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', 
+                `${username}: ${input.value}`
+            );
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(msg) {
+        var item = document.createElement('p');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+</script>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "qa-project",
+  "version": "1.0.0",
+  "description": "A project used for testing in the Codefinity Manual QA & Testing Course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socketio"
+  ],
+  "author": "M. Mouiz Ghouri",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "socket.io": "^4.7.5",
+    "sqlite3": "^5.1.7"
+  }
+}

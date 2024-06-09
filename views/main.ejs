@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat Application</title>
+
+        <link href="css/main.css" rel="stylesheet">
+        <script src="scripts/main.js"></script>
+        <script>
+            let option = '<%= option %>';
+        </script>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Welcome to the <span>Chat Application</span></h1>
+            <div class="form-container">
+                <form id="login-form" action="/login" method="POST" style="display: none;">
+                    <h2>Login</h2>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="toggleForm()">Register here</a></p>
+                </form>
+    
+                <form id="register-form" action="/register" method="POST" style="display: none;">
+                    <h2>Register</h2>
+                    <label for="reg-username">Username</label>
+                    <input type="text" id="reg-username" name="username" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" name="password" required>
+                    <button type="submit">Register</button>
+                    <p>Already have an account? <a href="#" onclick="toggleForm()" class="show-form-btn">Login here</a></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
